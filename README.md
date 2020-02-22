@@ -59,4 +59,15 @@ docker build . -t envoy_reader
 docker-compose up -d
 ```
 4. Troubleshooting
-Logs are written to /var/log/envoy_reader.log in the envoyreader_worker_1 container.
+* The containers keeps restarting
+Run in interactive mode to see the error
+```sh
+docker-compose up
+```
+
+* The container is running but not writing
+Check the application log file for any errors.
+```sh
+docker exec -it envoyreader_worker_1 bash
+cat /var/log/envoy_reader.log
+```

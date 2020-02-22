@@ -24,6 +24,8 @@ services:
       - ENVOY_PASSWORD= #Envoy password - last 6 digits of your serial number - see https://enphase.com/en-au/support/how-do-i-update-password-my-home-wi-fi-network
       - ENVOY_INSTALLER_USER=installer
       - ENVOY_INSTALLER_PASS= #Installer password - see https://thecomputerperson.wordpress.com/2016/08/28/reverse-engineering-the-enphase-installer-toolkit/
+    ports:
+      - 5001:5001
     depends_on:
       - beat
     restart: always

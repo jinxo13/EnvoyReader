@@ -19,9 +19,6 @@ ENVOY_PASSWORD = os.environ['ENVOY_PASSWORD']
 ENVOY_INSTALLER_USER = os.environ['ENVOY_INSTALLER_USER']
 ENVOY_INSTALLER_PASS = os.environ['ENVOY_INSTALLER_PASS']
 
-#Testing or not?
-IS_TESTING = (os.environ['TEST_MODE'] == '1')
-
 #Influxdb measurement names
 INFLUXDB_INVERTER_MEAS = os.environ['INFLUXDB_INVERTER_MEAS']
 INFLUXDB_METER_MEAS = os.environ['INFLUXDB_METER_MEAS']
@@ -196,10 +193,7 @@ def get_stream():
                     for event in sclient.events():
                         redis.set_state(redis.REDIS_METER_DATA, event.data)
                         redis.set_state('LAST_UPDATE', dates.to_string(datetime.now(dates.LOCAL_TIMEZONE)))
-                        if (IS_TESTING):
-                            write_influxdb_meter_data(dates.to_string(dates.utcnow()), event.data)
-                        else:
-                            write_influxdb_meter_data.delay(dates.to_string(dates.utcnow()), event.data)
+                        write_influxdb_meter_data.delay(dates.to_string(dates.utcnow()), event.data)
                         if not STATE['processing']:
                             break
                     logger.info('End processing meter data...')
@@ -246,10 +240,7 @@ def get_inverters():
 
             data = '{ "inverters": %s }' % json.dumps(devices['inverters'][0]['devices'])
             redis.set_state(REDIS_INVERTER_DATA, data)
-            if (IS_TESTING):
-                write_influxdb_inverter_data(dates.to_string(dates.utcnow()), data)
-            else:
-                write_influxdb_inverter_data.delay(dates.to_string(dates.utcnow()), data)
+            write_influxdb_inverter_data.delay(dates.to_string(dates.utcnow()), data)
         else:
             logger.error('Failed to insert new data. Error code [%i]' % resp.status_code)
     except:

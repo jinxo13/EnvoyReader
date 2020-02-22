@@ -1,10 +1,6 @@
 import os
 import logging
 
-os.environ['TEST_MODE'] = '1'
-
-#os.environ['LOG_FILE'] = 'envoy_reader.log'
-
 os.environ['INFLUXDB_HOST'] = 'surface.local'
 os.environ['INFLUXDB_PORT'] = '8086'
 os.environ['INFLUXDB_USER'] = 'writer'

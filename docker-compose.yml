@@ -1,6 +1,6 @@
 version: '3.4'
 
-services: 
+services:
   worker:
     build: .
     image: &img localhost:5000/envoy_reader:latest
@@ -30,7 +30,7 @@ services:
       - beat
     restart: always
     volumes:
-      - ./app:/app 
+      - ./app:/app
 
   beat:
     build: .

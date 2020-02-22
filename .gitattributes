@@ -1,5 +1,5 @@
 *.py text
 *.yml text
-*.sh
+*.sh text
 
 text eol=lf

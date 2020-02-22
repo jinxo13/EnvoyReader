@@ -54,7 +54,8 @@ git clone https://github.com/jinxo13/EnvoyReader
 ```
 3. Build the Docker image and start the containers
 ```sh
-docker build . -t celery_app
+cd EnvoyReader
+docker build . -t envoy_reader
 docker-compose up -d
 ```
 4. Troubleshooting

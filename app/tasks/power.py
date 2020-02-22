@@ -10,6 +10,7 @@ from celery.signals import worker_init, worker_shutdown
 from datetime import datetime, timedelta
 import app.db.redis as redis
 import app.db.influxdb as influxdb
+import app.mainApp as mainApp
 from app.utils import json, dates
 
 #Envoy access configuration
@@ -48,6 +49,8 @@ STATE = {'processing': True}
 
 @worker_init.connect
 def init(sender=None, conf=None, **kwargs):
+    port = int(os.environ['APP_PORT'])
+    mainApp.app.run(host='0.0.0.0', port=port)
     redis.unlock("state:stream")
     logger.info('Unlocked [%s]' % "state:stream")
 

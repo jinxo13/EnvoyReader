@@ -1,0 +1,40 @@
+version: '3.4'
+
+services: 
+  worker:
+    build: .
+    image: &img localhost:5000/celery_app:latest
+    command: [celery, worker, --app=app.mainApp.celery, --loglevel=INFO]
+    environment: &env
+      - LOCAL_TZ= #Local timezone e.g. Australia/Brisbane
+      - LOG_FILE=/var/log/envoy_reader.log
+      - APP_PORT=5001 #Exposes current Envoy data
+      - REDIS_HOST= #REDIS host e.g. redis.local
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=
+      - INFLUXDB_HOST= #InluxDB host e.g. influx.local
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_USER= #InluxDB user
+      - INFLUXDB_PASSWORD=  #InluxDB password
+      - INFLUXDB_DATABASE=envoy #InluxDB database name
+      - INFLUXDB_METER_MEAS=power_meter #measurement used for meter data
+      - INFLUXDB_INVERTER_MEAS=power_inverter #measurement used for inverter data
+      - ENVOY_URL= #Envoy URL e.g. http://envoy.local
+      - ENVOY_USERNAME=envoy
+      - ENVOY_PASSWORD= #Envoy password - last 6 digits of your serial number - see https://enphase.com/en-au/support/how-do-i-update-password-my-home-wi-fi-network
+      - ENVOY_INSTALLER_USER=installer
+      - ENVOY_INSTALLER_PASS= #Installer password - see https://thecomputerperson.wordpress.com/2016/08/28/reverse-engineering-the-enphase-installer-toolkit/
+    depends_on:
+      - beat
+    restart: always
+    volumes:
+      - ./app:/app 
+
+  beat:
+    build: .
+    image: *img
+    command: [celery, beat, --app=app.mainApp.celery, --loglevel=INFO]
+    environment: *env
+    restart: always
+    volumes:
+      - ./app:/app

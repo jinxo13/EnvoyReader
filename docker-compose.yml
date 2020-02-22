@@ -5,7 +5,7 @@ services:
     build: .
     image: &img localhost:5000/envoy_reader:latest
     command: [celery, worker, --app=app.mainApp.celery, --loglevel=INFO]
-    network_mode: host
+    #network_mode: host
     environment: &env
       - LOCAL_TZ= #Local timezone e.g. Australia/Brisbane
       - LOG_FILE=/var/log/envoy_reader.log
@@ -37,7 +37,7 @@ services:
     build: .
     image: *img
     command: [celery, beat, --app=app.mainApp.celery, --loglevel=INFO]
-    network_mode: host
+    #network_mode: host
     environment: *env
     restart: always
     volumes:

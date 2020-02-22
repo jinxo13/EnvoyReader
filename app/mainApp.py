@@ -51,7 +51,7 @@ def home():
     response['message'] = 'Welcome!'
     return json.dumps(response)
 
-if __name__ == "__main__":
-    port = int(os.environ['APP_PORT'])
-    app.run(host='0.0.0.0', port=port)
+logger.info(__name__)
+port = int(os.environ['APP_PORT'])
+app.run(host='0.0.0.0', port=port)
 

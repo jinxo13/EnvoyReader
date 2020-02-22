@@ -50,8 +50,3 @@ def home():
     response = {}
     response['message'] = 'Welcome!'
     return json.dumps(response)
-
-logger.info(__name__)
-port = int(os.environ['APP_PORT'])
-app.run(host='0.0.0.0', port=port)
-

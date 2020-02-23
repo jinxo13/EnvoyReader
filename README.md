@@ -59,6 +59,7 @@ docker-compose up -d
 ```
 ## Troubleshooting
 * The containers keeps restarting
+
 Run in interactive mode to see the error
 ```sh
 docker-compose up

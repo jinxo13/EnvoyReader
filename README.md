@@ -5,6 +5,8 @@ The data captured is:
 * Every second - total production, consumption, net for the house and each power phase
 * Every 15 minutes - inverter specific data
 
+See the [wiki](https://github.com/jinxo13/EnvoyReader/wiki) for more detail
+
 ## Goal
 - Easily capture local available Envoy data
 - Allow visualisations in tools like Grafana

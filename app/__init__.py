@@ -19,8 +19,8 @@ def make_celery(app):
     return celery
 
 def create_app():
-    app = Flask(__name__)
     os.environ['FLASK_RUN_HOST'] = '0.0.0.0'
     os.environ['FLASK_RUN_PORT'] = os.environ['APP_PORT']
+    app = Flask(__name__)
     app.celery = make_celery(app)
     return app

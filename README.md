@@ -17,8 +17,8 @@ See the [wiki](https://github.com/jinxo13/EnvoyReader/wiki) for more detail
 
 ## Requirements
 - An enironment to run the containers
-- InfluxDB to be up and running
-- Redis to be up and running
+- InfluxDB
+- Redis
 
 ## Install
 1. Clone/download this repository

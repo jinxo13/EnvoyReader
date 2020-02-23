@@ -1,9 +1,5 @@
 # EnvoyReader
 Runs python containers to read a local Envoy system into InfluxDB.
-It also provides a web API that shows the current envoy data, using the paths:
-* /power/production
-* /power/inverter
-* /power/stream
 
 The data captured is:
 * Every second - total production, consumption, net for the house and each power phase
@@ -35,7 +31,6 @@ git clone https://github.com/jinxo13/EnvoyReader
 ```yml
  - LOCAL_TZ= #Local timezone e.g. Australia/Brisbane
  - LOG_FILE=/var/log/envoy_reader.log
- - APP_PORT=5001 #Exposes current Envoy data
  - REDIS_HOST= #REDIS host e.g. redis.local
  - REDIS_PORT=6379
  - REDIS_PASSWORD=

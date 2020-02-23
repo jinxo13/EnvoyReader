@@ -10,7 +10,7 @@ from celery.signals import worker_init, worker_shutdown
 from datetime import datetime, timedelta
 import app.db.redis as redis
 import app.db.influxdb as influxdb
-import app.mainApp as mainApp
+from app import mainApp
 from app.utils import json, dates
 
 #Envoy access configuration

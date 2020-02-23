@@ -3,7 +3,7 @@ version: '3.4'
 services:
   worker:
     build: .
-    image: &img localhost:5000/envoy_reader:latest
+    image: &img envoy_reader:latest
     command: [celery, worker, --app=app.mainApp.celery, --loglevel=INFO]
     #network_mode: host
     environment: &env

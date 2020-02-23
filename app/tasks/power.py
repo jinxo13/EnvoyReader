@@ -47,10 +47,17 @@ ELEMENTS = {
 
 STATE = {'processing': True}
 
-@worker_init.connect
-def init(sender=None, conf=None, **kwargs):
+def start_api():
     port = int(os.environ['APP_PORT'])
     mainApp.app.run(host='0.0.0.0', port=port)
+
+@worker_init.connect
+def init(sender=None, conf=None, **kwargs):
+    
+    #Start API
+    thread = threading.Thread(target=start_api)
+    thread.start()
+
     redis.unlock("state:stream")
     logger.info('Unlocked [%s]' % "state:stream")
 

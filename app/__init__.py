@@ -1,3 +1,4 @@
+import os
 from celery import Celery
 from flask import Flask
 
@@ -19,7 +20,7 @@ def make_celery(app):
 
 def create_app():
     app = Flask(__name__)
-    #app.config.from_object('config')
-
+    os.environ['FLASK_RUN_HOST'] = '0.0.0.0'
+    os.environ['FLASK_RUN_PORT'] = os.environ['APP_PORT']
     app.celery = make_celery(app)
     return app

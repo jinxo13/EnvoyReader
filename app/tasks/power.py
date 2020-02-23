@@ -49,11 +49,6 @@ STATE = {'processing': True}
 
 @worker_init.connect
 def init(sender=None, conf=None, **kwargs):
-    
-    #Start API
-    thread = threading.Thread(target=start_api)
-    thread.start()
-
     redis.unlock("state:stream")
     logger.info('Unlocked [%s]' % "state:stream")
 

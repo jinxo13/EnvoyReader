@@ -61,6 +61,7 @@ docker-compose up
 ```
 
 * The container is running but not writing
+
 Check the application log file for any errors.
 ```sh
 docker exec -it envoyreader_worker_1 bash

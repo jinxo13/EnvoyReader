@@ -53,7 +53,7 @@ cd EnvoyReader
 docker build . -t envoy_reader
 docker-compose up -d
 ```
-4. Troubleshooting
+## Troubleshooting
 * The containers keeps restarting
 Run in interactive mode to see the error
 ```sh

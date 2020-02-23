@@ -9,7 +9,6 @@ services:
     environment: &env
       - LOCAL_TZ= #Local timezone e.g. Australia/Brisbane
       - LOG_FILE=/var/log/envoy_reader.log
-      - APP_PORT=5001 #Exposes current Envoy data
       - REDIS_HOST= #REDIS host e.g. redis.local
       - REDIS_PORT=6379
       - REDIS_PASSWORD=
@@ -25,8 +24,6 @@ services:
       - ENVOY_PASSWORD= #Envoy password - last 6 digits of your serial number - see https://enphase.com/en-au/support/how-do-i-update-password-my-home-wi-fi-network
       - ENVOY_INSTALLER_USER=installer
       - ENVOY_INSTALLER_PASS= #Installer password - see https://thecomputerperson.wordpress.com/2016/08/28/reverse-engineering-the-enphase-installer-toolkit/
-    ports:
-      - 5001:5001
     depends_on:
       - beat
     restart: always

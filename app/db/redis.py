@@ -5,7 +5,6 @@ import os
 #Collections
 REDIS_METER_DATA = 'envoy.meter.stream'
 REDIS_INVERTER_DATA  = 'envoy.inverter'
-REDIS_PRODUCTION_DATA  = 'envoy.production'
 REDIS_ACTIVE_INVERTERS = 'envoy.inverters.active'
 
 redis_host = os.environ['REDIS_HOST']
